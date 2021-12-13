@@ -1,0 +1,31 @@
+class Solution {
+    public int[] sortedSquares(int[] nums) {
+         
+        int[] squaredArray = new int[nums.length];
+        int counter = nums.length-1;
+        for(int i : nums){
+
+            int squaredval = i*i;
+            squaredArray[counter]= squaredval;
+            counter-=1;
+        }
+        System.out.println(Arrays.toString(squaredArray));
+        int smallest = squaredArray[0];
+        int smallestindexCounter = 0;       //to keep track of the index where the smallest number needs to be placed
+        for(int i=0;i<squaredArray.length;i++){
+            smallest = squaredArray[smallestindexCounter];
+            for (int j=0+i;j<squaredArray.length;j++ ){
+
+                if(squaredArray[j]<smallest){
+                    int saver = squaredArray[j];
+                    squaredArray[j]= smallest;
+                    smallest = saver;
+                }
+            squaredArray[smallestindexCounter] = smallest;
+
+            }
+            smallestindexCounter+=1;
+        }
+        return squaredArray;
+    }
+}
