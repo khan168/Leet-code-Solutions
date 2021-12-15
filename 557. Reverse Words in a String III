@@ -1,0 +1,24 @@
+class Solution {
+    public String reverseWords(String s) {
+        String[] words = s.split(" ");
+        s="";
+        int counter= 0;
+        for(String i : words){
+            int len = i.length()-1;
+            String revword = "";
+            for(int j=0 ;  j<=len;j++){
+                char x = i.charAt(j);
+                revword = x+ revword;
+            }
+            if(counter==0){
+            s  =s  + revword; 
+                counter++;
+            }
+            else{
+                s= s+ " " + revword;
+            }
+        }
+        return s;
+        
+    }
+}
