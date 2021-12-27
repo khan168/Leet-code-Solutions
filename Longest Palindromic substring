@@ -20,62 +20,61 @@ s consist of only digits and English letters.
 */
 
 
-
-
 public class Main {
 
     public static void main(String[] args) {
-        String s = "cbbd";
-        char[] chararr = s.toCharArray();
-        int right = 0;
-        int left = 0;
-        String substr = "";
-        String maxlenstr = "";
+        String s = "abbba";
+        maxlen_Palindrome_String m1 = new maxlen_Palindrome_String();
+        System.out.println(m1.maxLenPalString(s));  // expected ans "abbba"
+    }
+}
 
-        if(s.length()==1 || s.equals("")){
-            s= maxlenstr;
-        }
-        else {
+1.test case => s = "a"; return--> "a"
+2.test case=> s = "abbccccbbddd" return--> "bbccccbb"
 
-            for (left = 0; left <= s.length() - 1; left++) {
-                for (right = 1 + left; right <= s.length() ; right++) {
 
-                    String sub = s.substring(left, right);
-                    if (isPalin(sub)) {
-                        substr = sub;
 
-                        if (substr.length() > maxlenstr.length()) {
-                            maxlenstr = substr;
 
-                        }
 
-                    }
-                }
+public class maxlen_Palindrome_String {
+
+    public maxlen_Palindrome_String() {};
+
+    public static String maxLenPalString(String s) {
+        int start = 0;
+        int end = 0;
+
+        if (s.isEmpty() || s == null) System.out.println("");
+        for (int i = 0; i < s.length(); i++) {
+            int l1 = efm(s, i, i);
+            int l2 = efm(s, i, i + 1);
+            int len = Math.max(l1, l2);
+
+            if (len > (end - start)) {
+                start = i - (len - 1) / 2;
+                end = i + len / 2;
+
             }
+
         }
-        return (maxlenstr);
-        }
+        return (s.substring(start, end + 1));
 
 
-
-
-    public static boolean isPalin(String s){
-        int left = 0;
-        boolean ispalin = false;
-        char[] palincharr  =s.toCharArray();
-        int right = s.length()-1;
-        if(s.length()==1 || s.equals("")){return true;}
-        while (left<right){
-            if(palincharr[left]==palincharr[right]){
-                left++;
-                right--;
-                ispalin = true;
-            }
-            else{ispalin=  false;
-            break;}
-        }
-
-        return ispalin;
-        }
 
     }
+    private static int efm (String s,int left, int right){
+        int l = 0;
+        while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+            left--;
+            right++;
+        }
+        l = right - left - 1;
+
+
+        return l;
+    }
+}
+        
+        
+        
+        
