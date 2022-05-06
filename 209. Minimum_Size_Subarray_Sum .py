@@ -19,3 +19,12 @@ class Solution:
                     suma += nums[j]
                     j += 1
             return ans
+        
+if __name__ == "__main__":
+    '''
+    Test case1- target = 7, nums = [2,3,1,2,4,3]
+    Expected Output: 2
+    '''
+    ans=Solution().minSubArrayLen(target=7,nums=[2, 3, 1, 2, 4, 3])
+    print(ans)
+    
